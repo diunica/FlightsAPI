@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FlightsAPI.Services
 {
-    public class FlightService 
+    public class FlightService : IFlightService
     {
         #region Defaults, Configuration & Constants
         
@@ -47,7 +47,7 @@ namespace FlightsAPI.Services
 
         #region Private
 
-        private async Task<List<FlightProvider>> RetrieveFlightsFromServer()
+        protected virtual async Task<List<FlightProvider>> RetrieveFlightsFromServer()
         {
             HttpClient flightsClient = InitializeHttpClient();
             HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, "2");

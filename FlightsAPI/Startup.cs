@@ -33,7 +33,7 @@ namespace FlightsAPI
                 q.UseMicrosoftDependencyInjectionJobFactory();
             });
 
-            services.AddSingleton<FlightService>();
+            services.AddSingleton<IFlightService, FlightService>();
             services.AddSingleton<ExchangeRatesService>();
         }
 

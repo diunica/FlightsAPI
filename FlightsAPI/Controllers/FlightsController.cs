@@ -15,10 +15,10 @@ namespace FlightsAPI.Controllers
     {
 
         private readonly ILogger<FlightsController> logger;
-        private FlightService service;
+        private IFlightService service;
         private ExchangeRatesService exchangeRatesService;
 
-        public FlightsController(ILogger<FlightsController> logger, FlightService service, ExchangeRatesService exchangeRatesService)
+        public FlightsController(ILogger<FlightsController> logger, IFlightService service, ExchangeRatesService exchangeRatesService)
         {
             this.logger = logger;
             this.service = service;
@@ -33,8 +33,8 @@ namespace FlightsAPI.Controllers
         /// <param name="badge">badge (string)</param>
         /// <returns>The list of Journey</returns>
         /// <response code="200">OK. Returns the list of Journey objects</response>
-        [HttpGet("{origin}/{destination}/{badge}")]
-        public async Task<ActionResult<List<Journey>>> Get(string origin, string destination, string badge)
+        [HttpGet("{origin}/{destination}")]
+        public async Task<ActionResult<List<Journey>>> Get(string origin, string destination, string badge = "USD")
         {
             return Ok(await FindFlight(origin, destination, badge));
         }
